@@ -1,5 +1,5 @@
 //
-//  ExploreDetailInteractor.swift
+//  CategoryDetailInteractor.swift
 //  MacaWarta
 //
 //  Created by Prima Santosa on 09/11/20.
@@ -8,22 +8,33 @@
 import Foundation
 import Combine
 
-protocol ExploreDetailInteractorProtocol {
+protocol CategoryDetailUseCase {
   func getNews(
     from category: String,
     in country: String,
-    page: Int
-  ) -> AnyPublisher<(articles: [ArticleModel], total: Int), Error>
+    page: Int,
+    isConnected: Bool
+  ) -> AnyPublisher<(articles: [ArticleModel], canLoadMore: Bool), Error>
 }
 
-class ExploreDetailInteractor: ExploreDetailInteractorProtocol {
+class CategoryDetailInteractor: CategoryDetailUseCase {
   private var repository: WartaRepository
-  
+
   init(repository: WartaRepository) {
     self.repository = repository
   }
-  
-  func getNews(from category: String, in country: String, page: Int) -> AnyPublisher<(articles: [ArticleModel], total: Int), Error> {
-    return repository.getNews(from: category, in: country, page: page)
+
+  func getNews(
+    from category: String,
+    in country: String,
+    page: Int,
+    isConnected: Bool
+  ) -> AnyPublisher<(articles: [ArticleModel], canLoadMore: Bool), Error> {
+    return repository.getNews(
+      from: category,
+      in: country,
+      page: page,
+      isConnected: isConnected
+    )
   }
 }

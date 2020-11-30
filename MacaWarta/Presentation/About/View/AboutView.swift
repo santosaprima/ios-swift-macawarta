@@ -8,13 +8,29 @@
 import SwiftUI
 
 struct AboutView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  var body: some View {
+    VStack {
+      Spacer()
+
+      Image("me")
+        .resizable()
+        .clipShape(RoundedRectangle(cornerRadius: 1000.0))
+        .frame(width: 200, height: 200)
+
+      Text("Mauliawan Prima Santosa")
+        .font(.title2)
+        .bold()
+
+      Text("trust3d@primasantosa.com")
+
+      Spacer()
     }
+    .navigationBarTitle("About", displayMode: .inline)
+  }
 }
 
 struct AboutView_Previews: PreviewProvider {
-    static var previews: some View {
-        AboutView()
-    }
+  static var previews: some View {
+    AboutView()
+  }
 }

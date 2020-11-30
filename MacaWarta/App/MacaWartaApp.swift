@@ -9,9 +9,29 @@ import SwiftUI
 
 @main
 struct MacaWartaApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  let headlinesPresenter = HeadlinesPresenter(
+    useCase: HeadlinesInteractor(
+      repository: WartaRepository.shared
+    )
+  )
+  let searchPresenter = SearchPresenter(
+    useCase: SearchInteractor(
+      repository: WartaRepository.shared
+    )
+  )
+  let favoritePresenter = FavoritePresenter(
+    useCase: FavoriteInteractor(
+      repository: WartaRepository.shared
+    )
+  )
+
+  var body: some Scene {
+    WindowGroup {
+      ContentView(
+        headlinesPresenter: headlinesPresenter,
+        searchPresenter: searchPresenter,
+        favoritePresenter: favoritePresenter
+      )
     }
+  }
 }

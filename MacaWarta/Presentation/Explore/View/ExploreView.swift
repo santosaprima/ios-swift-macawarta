@@ -8,13 +8,38 @@
 import SwiftUI
 
 struct ExploreView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  private let categories = Array(Selection.categories.keys.sorted())
+
+  var body: some View {
+    NavigationView {
+      VStack {
+        ScrollView {
+          VStack {
+            ForEach(categories, id: \.self) { category in
+              NavigationLink(
+                destination: CategoryDetailView(
+                  category: category,
+                  presenter: CategoryDetailPresenter(
+                    useCase: CategoryDetailInteractor(
+                      repository: WartaRepository.shared
+                    )
+                  )
+                ),
+                label: {
+                  CategoryRow(category: category)
+                }
+              ).buttonStyle(PlainButtonStyle())
+            }
+          }
+        }
+      }
+      .navigationBarTitle("Explore")
     }
+  }
 }
 
 struct ExploreView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExploreView()
-    }
+  static var previews: some View {
+    ExploreView()
+  }
 }
