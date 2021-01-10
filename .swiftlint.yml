@@ -1,3 +1,7 @@
 identifier_name:
   excluded: # excluded via string array
     - id
+disabled_rules:
+  - force_try
+  - large_tuple
+  - generic_type_name
