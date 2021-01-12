@@ -4,6 +4,10 @@
 
 Maca Warta is an app to read, explore, and search news around the world. You can also add important news to favorite. 
 
+## Branches
+* main -> Monolith approach
+* modularization -> Modular approach
+
 ## Screenshots
 
 <p float="left">
